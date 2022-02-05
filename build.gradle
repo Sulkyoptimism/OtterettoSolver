@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+applicationDefaultJvmArgs = ["-Djava.library.path=libraries/openCV/x64"]
+application {
+    mainClass = 'main.main'
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs "libraries"
+        }
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    //compile group: 'org.openpnp', name: 'opencv', version: '3.4.2-0'
+    implementation files('libraries/openCV/opencv-3414.jar')
+}
+
+test {
+    useJUnitPlatform()
+}
